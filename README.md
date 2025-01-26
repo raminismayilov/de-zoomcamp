@@ -100,7 +100,8 @@ SELECT "PULocationID"
 FROM green_tripdata
 WHERE DATE(lpep_pickup_datetime) = '2019-10-18'
 GROUP BY "PULocationID"
-HAVING SUM("total_amount") > 13000;
+HAVING SUM("total_amount") > 13000
+LIMIT 3;
 ```
 
 ### Question 6
