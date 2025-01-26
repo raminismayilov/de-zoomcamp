@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  pgdatabase:
+    image: postgres:13
+    container_name: pg-database
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=ny_taxi
+    volumes:
+      - ./ny_taxi_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - pgdatabase
+    command: >
+      --user=root
+      --password=root
+      --host=pgdatabase
+      --port=5432
+      --database=ny_taxi
+      --table=green_tripdata
+      --file_url=https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-10.csv.gz
