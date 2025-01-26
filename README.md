@@ -111,4 +111,5 @@ FROM green_tripdata
 WHERE "PULocationID" = 74
 GROUP BY "DOLocationID"
 ORDER BY max_tip DESC
+LIMIT 1;
 ```
