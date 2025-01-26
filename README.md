@@ -9,8 +9,6 @@ docker run -it --entrypoint=bash python:3.12.8
 pip --version
 ```
 
-### Question 2
-
 ### Prepare Postgres
 
 ```bash
@@ -114,6 +112,3 @@ WHERE "PULocationID" = 74
 GROUP BY "DOLocationID"
 ORDER BY max_tip DESC
 ```
-
-### Question 7
-
