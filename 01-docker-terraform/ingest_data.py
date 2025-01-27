@@ -41,6 +41,7 @@ def ingest_data(df, table_name, engine):
         print(f"Successfully sent {len(df)} rows to {table_name}")
     except Exception as e:
         print(f"Failed to send data to Postgres: ${str(e)}")
+        raise e
 
 
 df_iter = pd.read_csv(data_file, iterator=True, chunksize=100000,
