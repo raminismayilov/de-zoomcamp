@@ -96,10 +96,11 @@ LIMIT 1;
 ### Question 5
 
 ```sql
-SELECT "PULocationID"
+SELECT "Zone"
 FROM green_tripdata
+LEFT JOIN zones ON "PULocationID" = "LocationID"
 WHERE DATE(lpep_pickup_datetime) = '2019-10-18'
-GROUP BY "PULocationID"
+GROUP BY "PULocationID", "Zone"
 HAVING SUM("total_amount") > 13000
 LIMIT 3;
 ```
@@ -107,10 +108,11 @@ LIMIT 3;
 ### Question 6
 
 ```sql
-SELECT "DOLocationID", max(tip_amount) as max_tip
+SELECT  max(tip_amount) as max_tip, "Zone"
 FROM green_tripdata
+LEFT JOIN zones ON green_tripdata."DOLocationID" = zones."LocationID"
 WHERE "PULocationID" = 74
-GROUP BY "DOLocationID"
+GROUP BY "DOLocationID", "Zone"
 ORDER BY max_tip DESC
 LIMIT 1;
 ```
